@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Category;
+use App\Http\Resources\CategoryCollection;
 use App\User;
 use App\Writer;
 use Illuminate\Http\Request;
@@ -79,6 +81,12 @@ class UserController extends Controller
             return response()->json(['message' => 'token_absent'], $e->getStatusCode());
         }
         return response()->json(new UserResource($user), 200);
+    }
+
+    public function categories()
+    {
+        $user = Auth::user();
+        return response()->json($user->categories, 200);
     }
 
     public function logout()

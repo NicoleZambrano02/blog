@@ -29,6 +29,7 @@ Route::group(['middleware' => ['cors']], function () {
     Route::group(['middleware' => ['jwt.verify']], function () {
         Route::get('user', 'UserController@getAuthenticatedUser');
         Route::post('logout', 'UserController@logout');
+        Route::get('/user/categories', 'UserController@categories');
 
         Route::get('articles/{article}/image', 'ArticleController@image');
 
